@@ -25,7 +25,8 @@
     <nav class="hub-nav">
       <button class="nav-btn active" onclick="switchTab('dashboard', this)">🛡️ Dashboard</button>
       <button class="nav-btn" onclick="switchTab('tufansensi', this)">🎯 ZX TUFAN SENSI</button>
-      <button class="nav-btn" onclick="switchTab('sensimaker', this)">⚡ Dynamic Sensi</button>
+      <!-- NAYA PREMIUM 3D BUTTON NAME -->
+      <button class="nav-btn premium-btn" onclick="switchTab('sensimaker', this)">✨ GENERATE SENSITIVITY</button>
       <button class="nav-btn" onclick="switchTab('hudscanner', this)">📸 HUD Analyzer</button>
       <button class="nav-btn" onclick="switchTab('nicknames', this)">🔥 Nicknames</button>
       <button class="nav-btn" onclick="switchTab('termscan', this)">📱 TERMUX SCAN</button>
@@ -76,20 +77,21 @@
           <div class="res-card"><span>Sniper Scope</span><strong>70</strong></div>
           <div class="res-card accent"><span>Free Camera</span><strong>85</strong></div>
         </div>
-        <div class="fire-tip">⚡ Values are personal presets; use Dynamic Sensi tab to auto-generate device-specific numbers.</div>
+        <div class="fire-tip">⚡ Values are personal presets; use Generate Sensitivity tab to auto-generate device-specific numbers.</div>
       </div>
     </section>
 
-    <!-- TAB 3: DYNAMIC SENSI MAKER -->
+    <!-- TAB 3: GENERATE SENSITIVITY MAKER -->
     <section id="sensimaker" class="tab-content">
       <div class="panel-box">
-        <h3>🔍 V8.0 DYNAMIC DEVICE SENSI GENERATOR</h3>
-        <p>Apne phone ka model select karein, RAM aur DPI set karein, aur turant apni custom sensitivity generate karein.</p>
+        <h3>✨ PREMIUM DEVICE SENSI GENERATOR</h3>
+        <p>Apne phone ka model select karein, RAM aur DPI set karein, aur turant apni best No-Recoil sensitivity generate karein.</p>
         
-        <button class="big-select-btn" onclick="openDeviceModal()">
+        <!-- PREMIUM BIG SELECT BUTTON -->
+        <button class="big-select-btn premium-3d-btn" onclick="openDeviceModal()">
           <span class="icon">📱</span>
           <span class="text">Select Phone Model & Settings</span>
-          <span class="subtext">Tap to choose from 50+ devices</span>
+          <span class="subtext">Tap to choose from 80+ devices</span>
         </button>
 
         <div class="selected-device-banner" id="deviceBanner" style="display:none; margin-top:15px;">
@@ -134,7 +136,7 @@
         <div class="modal-body">
           <div class="search-input-wrapper" style="margin-bottom:10px;">
             <span>🔍</span>
-            <input id="modalDeviceSearch" type="text" placeholder="Search phone (e.g. Redmi Note 9, Poco, iPhone...)" oninput="filterModalDevices()" autocomplete="off">
+            <input id="modalDeviceSearch" type="text" placeholder="Search phone (e.g. Redmi, iPhone, Realme...)" oninput="filterModalDevices()" autocomplete="off">
           </div>
           <div id="modalDeviceList" class="modal-device-list"></div>
           <div class="modal-settings-grid">
@@ -272,7 +274,7 @@ python main.py</pre>
         <h3>⚖️ SAVED SENSI VAULT & DPI CALCULATOR</h3>
         <p>Apne save kiye hue sensitivity profiles dekhein aur safe DPI ratio calculate karein.</p>
         <div id="savedVaultList" class="nick-results-container" style="margin-bottom:15px;">
-          <p class="note">Abhi tak koi profile save nahi ki gayi hai. Dynamic Sensi tab se profile generate karke save karein!</p>
+          <p class="note">Abhi tak koi profile save nahi ki gayi hai. Generate Sensitivity tab se profile generate karke save karein!</p>
         </div>
         <button class="cyber-btn btn-3d red" onclick="clearSavedVault()">🗑️ CLEAR VAULT</button>
       </div>

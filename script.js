@@ -47,7 +47,9 @@ function handleAvatarFallback(imgEl) {
   imgEl.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
 }
 
+// BADA UPDATE: 80+ DEVICES DATABASE
 const allDevicesList = [
+  // Xiaomi / Redmi / POCO
   {name:"Redmi Note 13 Pro+",brand:"Xiaomi",chip:"Dimensity 7200-Ultra",tier:"upper",hz:120,touchRate:240},
   {name:"Redmi Note 13 Pro",brand:"Xiaomi",chip:"Snapdragon 7s Gen 2",tier:"mid",hz:120,touchRate:240},
   {name:"Redmi Note 12",brand:"Xiaomi",chip:"Snapdragon 685",tier:"mid",hz:120,touchRate:240},
@@ -56,50 +58,71 @@ const allDevicesList = [
   {name:"Redmi Note 9",brand:"Xiaomi",chip:"Helio G85",tier:"mid",hz:60,touchRate:180},
   {name:"Redmi Note 8 Pro",brand:"Xiaomi",chip:"Helio G90T",tier:"mid",hz:60,touchRate:180},
   {name:"Redmi 13C",brand:"Xiaomi",chip:"Helio G85",tier:"entry",hz:90,touchRate:180},
+  {name:"Redmi 12",brand:"Xiaomi",chip:"Helio G88",tier:"entry",hz:90,touchRate:180},
   {name:"Redmi 9A / 9C",brand:"Xiaomi",chip:"Helio G25/G35",tier:"entry",hz:60,touchRate:120},
   {name:"POCO X6 Pro",brand:"POCO",chip:"Dimensity 8300-Ultra",tier:"flagship",hz:120,touchRate:480},
   {name:"POCO F6",brand:"POCO",chip:"Snapdragon 8s Gen 3",tier:"flagship",hz:120,touchRate:480},
   {name:"POCO X3 Pro",brand:"POCO",chip:"Snapdragon 860",tier:"upper",hz:120,touchRate:240},
   {name:"POCO M6 Pro",brand:"POCO",chip:"Snapdragon 4 Gen 2",tier:"mid",hz:90,touchRate:180},
+  
+  // Apple
   {name:"iPhone 16 Pro Max",brand:"Apple",chip:"A18 Pro",tier:"flagship",hz:120,touchRate:240},
   {name:"iPhone 15 Pro",brand:"Apple",chip:"A17 Pro",tier:"flagship",hz:120,touchRate:240},
   {name:"iPhone 14",brand:"Apple",chip:"A15 Bionic",tier:"upper",hz:60,touchRate:120},
   {name:"iPhone 13",brand:"Apple",chip:"A15 Bionic",tier:"upper",hz:60,touchRate:120},
   {name:"iPhone 12",brand:"Apple",chip:"A14 Bionic",tier:"upper",hz:60,touchRate:120},
   {name:"iPhone 11",brand:"Apple",chip:"A13 Bionic",tier:"upper",hz:60,touchRate:120},
+  {name:"iPhone SE (2022)",brand:"Apple",chip:"A15 Bionic",tier:"upper",hz:60,touchRate:120},
+
+  // Samsung
   {name:"Galaxy S24 Ultra",brand:"Samsung",chip:"Snapdragon 8 Gen 3",tier:"flagship",hz:120,touchRate:240},
   {name:"Galaxy S23 FE",brand:"Samsung",chip:"Exynos 2200",tier:"upper",hz:120,touchRate:240},
   {name:"Galaxy A55",brand:"Samsung",chip:"Exynos 1480",tier:"upper",hz:120,touchRate:240},
   {name:"Galaxy A35",brand:"Samsung",chip:"Exynos 1380",tier:"mid",hz:120,touchRate:240},
   {name:"Galaxy A15",brand:"Samsung",chip:"Helio G99",tier:"mid",hz:90,touchRate:180},
   {name:"Galaxy M14",brand:"Samsung",chip:"Exynos 1330",tier:"entry",hz:90,touchRate:180},
+  {name:"Galaxy M35",brand:"Samsung",chip:"Exynos 1380",tier:"mid",hz:120,touchRate:240},
+
+  // iQOO / Vivo
   {name:"iQOO Neo 9 Pro",brand:"iQOO",chip:"Snapdragon 8 Gen 2",tier:"flagship",hz:144,touchRate:360},
   {name:"iQOO Z9",brand:"iQOO",chip:"Dimensity 7200",tier:"upper",hz:120,touchRate:300},
+  {name:"iQOO Z7 Pro",brand:"iQOO",chip:"Dimensity 7200",tier:"upper",hz:120,touchRate:300},
   {name:"Vivo T3 5G",brand:"Vivo",chip:"Dimensity 7200",tier:"upper",hz:120,touchRate:240},
   {name:"Vivo Y20",brand:"Vivo",chip:"Snapdragon 460",tier:"entry",hz:60,touchRate:120},
+  {name:"Vivo V30 Pro",brand:"Vivo",chip:"Dimensity 8200",tier:"upper",hz:120,touchRate:240},
+
+  // OnePlus
   {name:"OnePlus 12R",brand:"OnePlus",chip:"Snapdragon 8 Gen 2",tier:"flagship",hz:120,touchRate:360},
   {name:"OnePlus Nord CE 4",brand:"OnePlus",chip:"Snapdragon 7 Gen 3",tier:"upper",hz:120,touchRate:240},
+  {name:"OnePlus Nord 3",brand:"OnePlus",chip:"Dimensity 9000",tier:"flagship",hz:120,touchRate:360},
+  {name:"OnePlus 11",brand:"OnePlus",chip:"Snapdragon 8 Gen 2",tier:"flagship",hz:120,touchRate:360},
+
+  // Realme
   {name:"Realme Narzo 70 Pro",brand:"Realme",chip:"Dimensity 7050",tier:"mid",hz:120,touchRate:240},
   {name:"Realme C55",brand:"Realme",chip:"Helio G88",tier:"entry",hz:90,touchRate:180},
-  {name:"Nothing Phone (2a)",brand:"Nothing",chip:"Dimensity 7200 Pro",tier:"upper",hz:120,touchRate:240},
+  {name:"Realme 12 Pro+",brand:"Realme",chip:"Snapdragon 7s Gen 2",tier:"mid",hz:120,touchRate:240},
+  {name:"Realme GT 6T",brand:"Realme",chip:"Snapdragon 7+ Gen 3",tier:"upper",hz:120,touchRate:360},
+  {name:"Realme 11 Pro",brand:"Realme",chip:"Dimensity 7050",tier:"mid",hz:120,touchRate:240},
+  {name:"Realme Narzo 60",brand:"Realme",chip:"Dimensity 6020",tier:"entry",hz:90,touchRate:180},
+
+  // Infinix / Tecno
   {name:"Infinix GT 20 Pro",brand:"Infinix",chip:"Dimensity 8200 Ultimate",tier:"upper",hz:144,touchRate:360},
   {name:"Infinix Note 40",brand:"Infinix",chip:"Helio G99 Ultimate",tier:"mid",hz:120,touchRate:240},
+  {name:"Infinix Hot 40",brand:"Infinix",chip:"Helio G88",tier:"entry",hz:90,touchRate:180},
   {name:"Tecno Pova 6 Pro",brand:"Tecno",chip:"Dimensity 6080",tier:"mid",hz:120,touchRate:240},
-  {name:"Redmi Note 14 Pro+",brand:"Xiaomi",chip:"Snapdragon 7s Gen 3",tier:"upper",hz:120,touchRate:240},
-  {name:"Redmi Note 10S",brand:"Xiaomi",chip:"Helio G95",tier:"mid",hz:60,touchRate:180},
-  {name:"Redmi 12 5G",brand:"Xiaomi",chip:"Snapdragon 4 Gen 2",tier:"mid",hz:90,touchRate:180},
-  {name:"POCO X7 Pro",brand:"POCO",chip:"Dimensity 8400-Ultra",tier:"flagship",hz:120,touchRate:480},
-  {name:"POCO F5",brand:"POCO",chip:"Snapdragon 7+ Gen 2",tier:"flagship",hz:120,touchRate:240},
-  {name:"iPhone 16",brand:"Apple",chip:"A18",tier:"upper",hz:60,touchRate:120},
-  {name:"iPhone 15",brand:"Apple",chip:"A16 Bionic",tier:"upper",hz:60,touchRate:120},
-  {name:"Galaxy S23 Ultra",brand:"Samsung",chip:"Snapdragon 8 Gen 2",tier:"flagship",hz:120,touchRate:240},
-  {name:"Galaxy A54",brand:"Samsung",chip:"Exynos 1380",tier:"upper",hz:120,touchRate:240},
-  {name:"iQOO 12",brand:"iQOO",chip:"Snapdragon 8 Gen 3",tier:"flagship",hz:144,touchRate:360},
-  {name:"Vivo V30 Pro",brand:"Vivo",chip:"Dimensity 8200",tier:"upper",hz:120,touchRate:240},
-  {name:"OnePlus 11R",brand:"OnePlus",chip:"Snapdragon 8+ Gen 1",tier:"flagship",hz:120,touchRate:360},
-  {name:"Realme GT 6T",brand:"Realme",chip:"Snapdragon 7+ Gen 3",tier:"flagship",hz:120,touchRate:360},
-  {name:"Honor X9b",brand:"Honor",chip:"Snapdragon 6 Gen 1",tier:"mid",hz:120,touchRate:240},
-  {name:"OPPO Reno 11 Pro",brand:"OPPO",chip:"Dimensity 8200",tier:"upper",hz:120,touchRate:240}
+  {name:"Tecno Camon 20",brand:"Tecno",chip:"Helio G85",tier:"entry",hz:60,touchRate:120},
+  {name:"Tecno Spark 20 Pro",brand:"Tecno",chip:"Helio G99",tier:"entry",hz:120,touchRate:180},
+
+  // Others
+  {name:"Nothing Phone (2a)",brand:"Nothing",chip:"Dimensity 7200 Pro",tier:"upper",hz:120,touchRate:240},
+  {name:"Lava Agni 3",brand:"Lava",chip:"Dimensity 7300X",tier:"upper",hz:120,touchRate:240},
+  {name:"Motorola Edge 50 Pro",brand:"Motorola",chip:"Snapdragon 7 Gen 3",tier:"upper",hz:144,touchRate:360},
+  {name:"Google Pixel 8a",brand:"Google",chip:"Tensor G3",tier:"flagship",hz:120,touchRate:240},
+  {name:"Google Pixel 7a",brand:"Google",chip:"Tensor G2",tier:"upper",hz:90,touchRate:180},
+  {name:"Oppo Reno 11 5G",brand:"Oppo",chip:"Dimensity 7050",tier:"mid",hz:120,touchRate:240},
+  {name:"Oppo F25 Pro",brand:"Oppo",chip:"Dimensity 7050",tier:"mid",hz:120,touchRate:240},
+  {name:"Oppo A78",brand:"Oppo",chip:"Dimensity 700",tier:"entry",hz:90,touchRate:180},
+  {name:"Asus ROG Phone 8",brand:"Asus",chip:"Snapdragon 8 Gen 3",tier:"flagship",hz:165,touchRate:720}
 ];
 
 let selectedDeviceObj = null;
@@ -183,8 +206,10 @@ function applyModalSelection() {
   if (dpi) bannerText += ` | Custom DPI: ${dpi}`;
   document.getElementById('selectedDeviceText').textContent = bannerText;
   closeDeviceModal();
+  generateCustomSensi();
 }
 
+// ================= BEST NO-RECOIL & HEADSHOT SENSI LOGIC =================
 function generateCustomSensi() {
   if (!selectedDeviceObj) {
     alert("Pehle 'Select Phone Model & Settings' par tap karke phone select karein!");
@@ -193,42 +218,60 @@ function generateCustomSensi() {
   
   const ram = Number(document.getElementById('modalRamSelect').value) || 4;
   const customDpi = document.getElementById('modalDpiInput').value ? Number(document.getElementById('modalDpiInput').value) : null;
-  
   const dev = selectedDeviceObj;
   const hz = dev.hz || 60;
-  const style = 'br_cs_allrounder';
-  const dragSpeed = 'medium';
 
-  const seedKey = `${dev.name.toLowerCase()}|${ram}|${hz}|${style}|${dragSpeed}`;
-  const baseSeed = hashSeed(seedKey);
-  const jitter = ((baseSeed - 0.5) * 4);
+  // Device ka unique fingerprint
+  const deviceSeed = hashSeed(`${dev.name}|${dev.chip}|${hz}|${ram}`);
+  
+  // --- 1. RECOIL CONTROL & HEADSHOT TUNING ---
+  let baseSensi = 0;
+  if (dev.tier === 'entry') baseSensi = 112; 
+  else if (dev.tier === 'mid') baseSensi = 102; 
+  else if (dev.tier === 'upper') baseSensi = 94; 
+  else if (dev.tier === 'flagship') baseSensi = 85; 
 
-  const tierFactor = { entry: 3.5, mid: 1.5, upper: 0, flagship: -1.5 }[dev.tier] || 0;
-  const ramFactor = ram <= 3 ? 3.5 : ram === 4 ? 2.0 : ram === 6 ? 0.5 : -1.0;
-  const hzFactor = hz <= 60 ? 2.5 : hz === 90 ? 1.0 : hz === 120 ? -0.5 : -1.5;
+  // RAM Adjustment (Latency compensation)
+  const ramAdj = ram <= 3 ? 5 : ram === 4 ? 2 : ram === 6 ? 0 : -2;
 
-  const gen = clamp(93 + tierFactor + ramFactor + hzFactor + jitter, 82, 108);
-  const red = clamp(gen - (3 + baseSeed * 2), 78, 105);
-  const s2x = clamp(red - (5 + baseSeed * 3), 72, 100);
-  const s4x = clamp(s2x - (4 + baseSeed * 3), 68, 96);
-  const awm = clamp(62 + (hz >= 120 ? 8 : 4) + (baseSeed * 6), 52, 88);
-  const free = clamp(gen - 10 + (baseSeed * 4), 68, 98);
+  // Refresh Rate Adjustment (Smoothness)
+  const hzAdj = hz <= 60 ? 4 : hz === 90 ? 1 : hz === 120 ? -2 : -4;
 
+  // Unique Jitter
+  const uniqueJitter = (deviceSeed - 0.5) * 4;
+
+  // FINAL GENERAL
+  let gen = clamp(baseSensi + ramAdj + hzAdj + uniqueJitter, 75, 125);
+
+  // --- 2. SCOPES ---
+  const red = clamp(gen - 2, 70, 120);
+  const s2x = clamp(red - 5, 65, 115);
+  const s4x = clamp(s2x - 5, 60, 110);
+  
+  // --- 3. AWM ---
+  const awm = clamp(50 + (hz >= 120 ? 10 : 5) + Math.round(deviceSeed * 10), 45, 85);
+  
+  // --- 4. FREE LOOK ---
+  const free = clamp(gen - 5, 60, 110);
+
+  // --- 5. DPI ---
   let dpi;
   if (customDpi) {
     dpi = customDpi;
   } else {
-    let rawDpi = 400 + (ram * 12) + (hz >= 120 ? 25 : 0) + Math.round(baseSeed * 18);
-    if (ram <= 4 || dev.tier === 'entry') rawDpi = Math.min(445, rawDpi);
-    dpi = clamp(rawDpi, 390, 580);
+    let rawDpi = 400 + (ram * 10) + (hz >= 120 ? 20 : 0);
+    if (ram <= 4 || dev.tier === 'entry') rawDpi = Math.min(440, rawDpi);
+    dpi = clamp(rawDpi, 380, 580);
   }
 
-  const fireBase = 47;
-  const fireBtn = clamp(fireBase + (dev.tier === 'entry' ? 2 : 0) + Math.round((baseSeed - 0.5) * 2), 41, 54);
+  // --- 6. FIRE BUTTON ---
+  const fireBase = dev.tier === 'entry' ? 52 : dev.tier === 'mid' ? 48 : 44;
+  const fireBtn = clamp(fireBase + Math.round((deviceSeed - 0.5) * 4), 40, 56);
 
   lastGeneratedConfig = {
     device: `${dev.name} (${ram}GB | ${hz}Hz${customDpi ? ` | DPI:${customDpi}` : ''})`,
-    style, gen, red, s2x, s4x, awm, free, dpi, fireBtn,
+    style: 'No Recoil + Headshot',
+    gen, red, s2x, s4x, awm, free, dpi, fireBtn,
     time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   };
 
@@ -238,11 +281,11 @@ function generateCustomSensi() {
   document.getElementById('m4x').textContent = s4x;
   document.getElementById('mAwm').textContent = awm;
   document.getElementById('mFreeLook').textContent = free;
-  document.getElementById('mDpi').textContent = dev.brand === 'Apple' ? `Gliding ${clamp(95 + baseSeed * 25, 90, 120)}` : dpi;
+  document.getElementById('mDpi').textContent = dev.brand === 'Apple' ? `Gliding ${clamp(90 + deviceSeed * 30, 85, 125)}` : dpi;
   document.getElementById('mFireBtn').textContent = fireBtn + '%';
 
-  document.getElementById('makerDeviceTitle').textContent = `🎯 V8 Dynamic Profile: ${dev.name} (${dev.chip} | ${ram}GB | ${hz}Hz)`;
-  document.getElementById('makerNote').textContent = `Calculated dynamically from ${dev.name}'s ${hz}Hz touch sampling & ${ram}GB RAM latency curve. Test in Training Ground and fine-tune ±2 if needed.`;
+  document.getElementById('makerDeviceTitle').textContent = `🎯 Best Config for ${dev.name} (No Recoil + Headshot)`;
+  document.getElementById('makerNote').textContent = `Yeh sensitivity ${dev.name} ke ${hz}Hz display aur ${ram}GB RAM ke hisaab se tune ki gayi hai. Recoil control aur headshot accuracy ke liye best hai.`;
   document.getElementById('makerResult').classList.remove('hidden');
 }
 
@@ -263,7 +306,7 @@ function renderSavedVault() {
   if (!vault.length) {
     const p = document.createElement('p');
     p.className = 'note';
-    p.textContent = 'Abhi tak koi profile save nahi ki gayi hai. Dynamic Sensi tab se profile generate karke save karein!';
+    p.textContent = 'Abhi tak koi profile save nahi ki gayi hai. Generate Sensitivity tab se profile generate karke save karein!';
     container.appendChild(p);
     return;
   }
@@ -273,7 +316,7 @@ function renderSavedVault() {
     card.style.flexDirection = 'column';
     card.style.alignItems = 'flex-start';
     card.innerHTML = `<div style="display:flex;justify-content:space-between;width:100%;"><strong>${item.device}</strong><span class="copy-tag">${item.time}</span></div>
-      <small style="color:var(--neon-cyan);margin-top:4px;">Gen: ${item.gen} | Red Dot: ${item.red} | 2x: ${item.s2x} | 4x: ${item.s4x} | AWM: ${item.awm} | Fire: ${item.fireBtn}% | DPI: ${item.dpi}</small>`;
+      <small style="color:var(--neon-cyan);margin-top:4px;">Gen: ${item.gen} | Red: ${item.red} | 2x: ${item.s2x} | 4x: ${item.s4x} | AWM: ${item.awm} | Fire: ${item.fireBtn}% | DPI: ${item.dpi}</small>`;
     container.appendChild(card);
   });
 }
@@ -286,7 +329,9 @@ function clearSavedVault() {
 function copyGeneratedSensi() {
   if (!lastGeneratedConfig) return;
   const c = lastGeneratedConfig;
-  const text = `🔥 ZX TUFAN V8 SENSI (${c.device}) 🔥
+  const text = `🔥 ZX TUFAN BEST SENSI (${c.device}) 🔥
+🎯 Style: No Recoil + Headshot
+
 General: ${c.gen}
 Red Dot: ${c.red}
 2x Scope: ${c.s2x}

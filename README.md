@@ -5,7 +5,7 @@
 A fully client-side web application that generates device-specific Free Fire sensitivity settings, analyzes HUD screenshots, creates stylish nicknames, and scans real Android hardware via Termux.
 
 ## ✨ Features
-- **⚡ Dynamic Sensi Generator**: 50+ phone models. Calculates sensitivity based on device chipset, RAM, refresh rate, and custom DPI.
+- **✨ Generate Sensitivity**: 59 phone models with RAM, refresh rate, and DPI calculation tuned for recoil control and headshot accuracy.
 - **📸 HUD Geometry Analyzer**: Upload a HUD screenshot. It reads the aspect ratio and calculates fire button size & drag zone.
 - **📱 Termux Hardware Scanner**: Get exact hardware-based sensitivity via `main.py` and `device_report.json`.
 - **🔥 Nickname Generator**: Stylish esports nicknames with one-tap copy.
