@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05030a">
+  <title>ZX TUFAN PRO SENSI | Ultimate Esports Hub V8.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cinzel:wght@700;900&family=Rajdhani:wght@500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cyber-bg"></div><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div>
+  <main class="container">
+    <header class="hub-header">
+      <div class="logo-box">
+        <span class="neon-badge">ZX TUFAN SQUAD</span>
+        <h1>ZX TUFAN PRO SENSI <span class="gemini-tag">V8.0</span></h1>
+      </div>
+      <div class="header-status">
+        <div class="status-pill"><span class="pulse-dot"></span> DYNAMIC ENGINE V8</div>
+        <div class="live-counter-badge" id="liveVisitorBadge">👥 Active Players: <strong id="visitorCount">—</strong></div>
+      </div>
+    </header>
+
+    <nav class="hub-nav">
+      <button class="nav-btn active" onclick="switchTab('dashboard', this)">🛡️ Dashboard</button>
+      <button class="nav-btn" onclick="switchTab('tufansensi', this)">🎯 ZX TUFAN SENSI</button>
+      <button class="nav-btn" onclick="switchTab('sensimaker', this)">⚡ Dynamic Sensi</button>
+      <button class="nav-btn" onclick="switchTab('hudscanner', this)">📸 HUD Analyzer</button>
+      <button class="nav-btn" onclick="switchTab('nicknames', this)">🔥 Nicknames</button>
+      <button class="nav-btn" onclick="switchTab('termscan', this)">📱 TERMUX SCAN</button>
+      <button class="nav-btn" onclick="switchTab('compare', this)">⚖️ Compare & Save</button>
+    </nav>
+
+    <!-- TAB 1: DASHBOARD -->
+    <section id="dashboard" class="tab-content active">
+      <div class="panel-box">
+        <h3>👥 Squad Member Profile Switcher (V8.0)</h3>
+        <p>Squad members ki profile aur banner switch karein.</p>
+        <div class="button-row">
+          <button class="cyber-btn btn-3d" onclick="switchProfile('zxtufan')">⚡ ZX TUFAN</button>
+          <button class="cyber-btn btn-3d red" onclick="switchProfile('ritesh')">🔥 RITESH</button>
+          <button class="cyber-btn btn-3d orange" onclick="switchProfile('faisal')">🛡️ FAISAL</button>
+          <button class="cyber-btn btn-3d green" onclick="switchProfile('squad')">👥 FULL SQUAD</button>
+        </div>
+        <div class="profile-panel" id="profileCardBox">
+          <div class="avatar-frame"><img id="userAvatar" src="zxtufan.jpg" alt="ZX TUFAN" onerror="handleAvatarFallback(this)"></div>
+          <div class="profile-details">
+            <span id="profileBadge" class="legend-badge">LEGEND NEVER DIES (V8.0)</span>
+            <h2 id="profileName">ZX ★ TUFAN <span class="v-badge">✔</span></h2>
+            <p id="profileQuote" class="quote">"Main Agar Apni Jawani Ke Suna Du Kisse, Ye Jo Launde Hain, Mere Paon Dabane Lag Jaayein !!!"</p>
+            <div class="stats-row" id="profileStats">
+              <div class="stat-pill">🔥 BR Heroic</div>
+              <div class="stat-pill">🛡️ UID: 2910340190</div>
+              <div class="stat-pill">👍 6577 Likes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: ZX TUFAN SENSI -->
+    <section id="tufansensi" class="tab-content">
+      <div class="panel-box">
+        <h3>🎯 ZX TUFAN OFFICIAL PRO SENSI SETUP</h3>
+        <p>Aapki original in-match sensitivity configuration.</p>
+        <div class="sensi-image">
+          <img src="zxtufansensi.jpg" alt="ZX TUFAN Sensi Setup" onerror="this.style.display='none'">
+          <p>📸 ZX TUFAN sensitivity setup</p>
+        </div>
+        <div class="res-grid two">
+          <div class="res-card"><span>General</span><strong>107</strong></div>
+          <div class="res-card"><span>Red Dot</span><strong>101</strong></div>
+          <div class="res-card"><span>2x Scope</span><strong>89</strong></div>
+          <div class="res-card"><span>4x Scope</span><strong>86</strong></div>
+          <div class="res-card"><span>Sniper Scope</span><strong>70</strong></div>
+          <div class="res-card accent"><span>Free Camera</span><strong>85</strong></div>
+        </div>
+        <div class="fire-tip">⚡ Values are personal presets; use Dynamic Sensi tab to auto-generate device-specific numbers.</div>
+      </div>
+    </section>
+
+    <!-- TAB 3: DYNAMIC SENSI MAKER -->
+    <section id="sensimaker" class="tab-content">
+      <div class="panel-box">
+        <h3>🔍 V8.0 DYNAMIC DEVICE SENSI GENERATOR</h3>
+        <p>Apne phone ka model select karein, RAM aur DPI set karein, aur turant apni custom sensitivity generate karein.</p>
+        
+        <button class="big-select-btn" onclick="openDeviceModal()">
+          <span class="icon">📱</span>
+          <span class="text">Select Phone Model & Settings</span>
+          <span class="subtext">Tap to choose from 50+ devices</span>
+        </button>
+
+        <div class="selected-device-banner" id="deviceBanner" style="display:none; margin-top:15px;">
+          <span>Active Target:</span>
+          <strong id="selectedDeviceText">—</strong>
+        </div>
+
+        <div class="button-row" style="margin-top:15px;">
+          <button class="cyber-btn btn-3d" onclick="generateCustomSensi()">⚡ GENERATE SENSITIVITY</button>
+        </div>
+
+        <div id="makerResult" class="result-box hidden">
+          <div id="makerDeviceTitle" class="fire-tip"></div>
+          <div class="res-grid">
+            <div class="res-card"><span>General</span><strong id="mGen">—</strong></div>
+            <div class="res-card"><span>Red Dot</span><strong id="mRed">—</strong></div>
+            <div class="res-card"><span>2x Scope</span><strong id="m2x">—</strong></div>
+            <div class="res-card"><span>4x Scope</span><strong id="m4x">—</strong></div>
+            <div class="res-card"><span>AWM</span><strong id="mAwm">—</strong></div>
+            <div class="res-card"><span>Free Look</span><strong id="mFreeLook">—</strong></div>
+          </div>
+          <div class="res-grid two">
+            <div class="res-card accent"><span>Calculated DPI*</span><strong id="mDpi">—</strong></div>
+            <div class="res-card accent"><span>Fire Button</span><strong id="mFireBtn">—</strong></div>
+          </div>
+          <div class="button-row" style="margin-top:10px;">
+            <button class="cyber-btn btn-3d green" onclick="saveCurrentSensiToVault()">💾 SAVE TO MY VAULT</button>
+            <button class="cyber-btn btn-3d orange" onclick="copyGeneratedSensi()">📋 COPY CONFIG</button>
+          </div>
+          <p id="makerNote" class="note"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL POPUP -->
+    <div id="deviceModal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>📱 Select Phone & Settings</h3>
+          <button class="close-modal-btn" onclick="closeDeviceModal()">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="search-input-wrapper" style="margin-bottom:10px;">
+            <span>🔍</span>
+            <input id="modalDeviceSearch" type="text" placeholder="Search phone (e.g. Redmi Note 9, Poco, iPhone...)" oninput="filterModalDevices()" autocomplete="off">
+          </div>
+          <div id="modalDeviceList" class="modal-device-list"></div>
+          <div class="modal-settings-grid">
+            <div class="input-group">
+              <label>RAM Capacity</label>
+              <select id="modalRamSelect">
+                <option value="2">2 GB</option>
+                <option value="3">3 GB</option>
+                <option value="4" selected>4 GB</option>
+                <option value="6">6 GB</option>
+                <option value="8">8 GB</option>
+                <option value="12">12 GB / 16 GB</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Custom DPI (Optional)</label>
+              <input id="modalDpiInput" type="number" placeholder="e.g. 440" min="300" max="600">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="cyber-btn btn-3d green" onclick="applyModalSelection()">✔ APPLY & CLOSE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: HUD ANALYZER -->
+    <section id="hudscanner" class="tab-content">
+      <div class="panel-box">
+        <h3>📸 Dynamic HUD Geometry & Drag Calculator</h3>
+        <p>Apna HUD screenshot upload karein — image ke actual aspect ratio aur resolution ke hisab se dynamic fire button size aur drag sensitivity calculate hogi.</p>
+        <div class="input-grid">
+          <div class="input-group">
+            <label for="hudFileInput">HUD Screenshot</label>
+            <label class="file-upload-btn">📁 Choose Screenshot<input type="file" id="hudFileInput" accept="image/*" onchange="previewHudImage(event)"></label>
+          </div>
+          <div class="input-group">
+            <label for="hudGripSelect">Finger Grip</label>
+            <select id="hudGripSelect">
+              <option value="2finger">2-Finger Thumb</option>
+              <option value="3finger" selected>3-Finger Claw</option>
+              <option value="4finger">4-Finger Claw</option>
+            </select>
+          </div>
+        </div>
+        <div id="hudPreviewContainer" class="hidden">
+          <div class="hud-scan-wrapper">
+            <img id="hudPreviewImg" alt="HUD preview">
+            <div id="hudLaser" class="scan-laser hidden"></div>
+          </div>
+          <p id="hudImgMeta" class="note">HUD screenshot ready</p>
+        </div>
+        <button class="cyber-btn btn-3d" onclick="analyzeHudScreenshot()">🔍 ANALYSE SCREEN GEOMETRY & SENSI</button>
+        <div id="hudResultBox" class="result-box hidden">
+          <div id="hudTipBanner" class="fire-tip">🎯 SCREEN RATIO & GRIP CALIBRATED</div>
+          <div class="res-grid">
+            <div class="res-card"><span>General</span><strong id="hGen">—</strong></div>
+            <div class="res-card"><span>Red Dot</span><strong id="hRed">—</strong></div>
+            <div class="res-card"><span>2x Scope</span><strong id="h2x">—</strong></div>
+            <div class="res-card"><span>4x Scope</span><strong id="h4x">—</strong></div>
+            <div class="res-card"><span>Fire Button</span><strong id="hFireBtn">—</strong></div>
+            <div class="res-card accent"><span>Drag Zone</span><strong id="hDragZone">—</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: NICKNAMES -->
+    <section id="nicknames" class="tab-content">
+      <div class="panel-box">
+        <h3>🔥 Esports Nickname Generator (V8.0)</h3>
+        <p>Stylish nickname generate aur copy karein.</p>
+        <div class="input-group">
+          <input type="text" id="baseNameInput" placeholder="Enter name" value="TUFAN" maxlength="24" oninput="generateNicknames()">
+        </div>
+        <div class="button-row">
+          <button class="cyber-btn btn-3d" onclick="generateNicknames()">✨ GENERATE</button>
+          <button class="cyber-btn btn-3d purple" onclick="loadMoreNicknames()">➕ LOAD MORE</button>
+        </div>
+        <p id="nickCounterText" class="note">Showing 30 combinations</p>
+        <div class="nick-results-container" id="nickResults"></div>
+      </div>
+    </section>
+
+    <!-- TAB 6: TERMUX -->
+    <section id="termscan" class="tab-content">
+      <div class="panel-box">
+        <h3>📱 TERMUX REAL HARDWARE SCANNER</h3>
+        <p>Download main.py, run it in Termux, and upload device_report.json to generate exact hardware-based sensitivity.</p>
+        <div class="fire-tip">🔒 Reads basic Android hardware properties only (Brand, Model, RAM, Resolution, Refresh Rate).</div>
+        <div class="button-row">
+          <button class="cyber-btn btn-3d" onclick="downloadTermuxScanner()">⬇ DOWNLOAD main.py</button>
+          <button class="cyber-btn btn-3d" onclick="copyTermuxCommands()">📋 COPY COMMANDS</button>
+        </div>
+        <div class="input-group">
+          <label>Termux commands</label>
+          <pre id="termuxCommands">termux-setup-storage
+pkg update -y && pkg install python -y
+cd ~/storage/downloads
+python main.py</pre>
+        </div>
+        <div class="input-group">
+          <label for="deviceReportInput">Upload device_report.json</label>
+          <input type="file" id="deviceReportInput" accept=".json,application/json">
+        </div>
+        <button class="cyber-btn btn-3d" onclick="analyseTermuxReport()">🔍 ANALYSE HARDWARE & GENERATE SENSI</button>
+        <div id="termuxScanStatus" class="fire-tip status-message">Waiting for your Termux report.</div>
+        <div id="termuxDeviceResult" class="result-box hidden">
+          <h3 id="termuxDeviceTitle">Detected Android device</h3>
+          <div class="res-grid">
+            <div class="res-card"><span>Brand</span><strong id="scanBrand">—</strong></div>
+            <div class="res-card"><span>Model</span><strong id="scanModel">—</strong></div>
+            <div class="res-card"><span>Android</span><strong id="scanAndroid">—</strong></div>
+            <div class="res-card"><span>Resolution</span><strong id="scanResolution">—</strong></div>
+            <div class="res-card"><span>Refresh rate</span><strong id="scanRefresh">—</strong></div>
+            <div class="res-card"><span>Total RAM</span><strong id="scanRam">—</strong></div>
+          </div>
+          <h3>🎯 Hardware-Generated Sensitivity</h3>
+          <div class="res-grid">
+            <div class="res-card"><span>General</span><strong id="scanGen">—</strong></div>
+            <div class="res-card"><span>Red Dot</span><strong id="scanRed">—</strong></div>
+            <div class="res-card"><span>2x</span><strong id="scan2x">—</strong></div>
+            <div class="res-card"><span>4x</span><strong id="scan4x">—</strong></div>
+            <div class="res-card"><span>Sniper</span><strong id="scanSniper">—</strong></div>
+            <div class="res-card"><span>Free Look</span><strong id="scanFree">—</strong></div>
+          </div>
+          <p id="scanDisclaimer" class="note"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 7: COMPARE & SAVE -->
+    <section id="compare" class="tab-content">
+      <div class="panel-box">
+        <h3>⚖️ SAVED SENSI VAULT & DPI CALCULATOR</h3>
+        <p>Apne save kiye hue sensitivity profiles dekhein aur safe DPI ratio calculate karein.</p>
+        <div id="savedVaultList" class="nick-results-container" style="margin-bottom:15px;">
+          <p class="note">Abhi tak koi profile save nahi ki gayi hai. Dynamic Sensi tab se profile generate karke save karein!</p>
+        </div>
+        <button class="cyber-btn btn-3d red" onclick="clearSavedVault()">🗑️ CLEAR VAULT</button>
+      </div>
+    </section>
+
+    <footer class="hub-footer">Designed for ZX TUFAN Squad | ZX TUFAN PRO SENSI V8.0</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
