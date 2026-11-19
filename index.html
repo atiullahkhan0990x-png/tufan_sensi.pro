@@ -3,118 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZX TUFAN PRO SENSI V8.0</title>
+    <title>ZX TUFAN PRO SENSI V8.2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
 <div class="container">
 
-    <!-- Header -->
-    <div class="header">
-        <h1>ZX TUFAN SQUAD</h1>
-        <p>ZX TUFAN PRO SENSI V8.0</p>
-        <span class="badge">DYNAMIC ENGINE V8</span>
-    </div>
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span class="brand-dot"></span>
+            <span>ZX TUFAN <small>V8.2</small></span>
+        </div>
+        <div class="nav-status">
+            <span class="pulse-dot"></span>
+            <span>ACTIVE: <strong id="activeCount">2,161</strong></span>
+        </div>
+    </nav>
 
-    <!-- Active Players -->
-    <div style="text-align:center;margin-bottom:15px;font-size:13px;color:#aaa;">
-        👥 Active Players: <strong style="color:#00d4ff;">2,161</strong>
+    <!-- 3D Hero Dashboard Header -->
+    <header class="hero-header">
+        <div class="hero-glow"></div>
+        <span class="badge-3d">⚡ DYNAMIC ENGINE V8.2 • PRO ESPORTS</span>
+        <h1 class="title-3d" data-text="ZX TUFAN SQUAD">ZX TUFAN SQUAD</h1>
+        <p class="subtitle-glow">Next-Gen 3D Headshot Sensitivity &amp; Tactical HUD Suite</p>
+
+        <!-- Dashboard Stats Row -->
+        <div class="stats-grid">
+            <div class="stat-tile">
+                <span class="stat-label">ENGINE</span>
+                <strong class="stat-val cyan">V8.2 PRO</strong>
+            </div>
+            <div class="stat-tile">
+                <span class="stat-label">DEVICES</span>
+                <strong class="stat-val purple">40+ MODELS</strong>
+            </div>
+            <div class="stat-tile">
+                <span class="stat-label">SENSI SCALE</span>
+                <strong class="stat-val gold">0 – 200</strong>
+            </div>
+        </div>
+    </header>
+
+    <!-- Interactive 3D Dashboard Menu Tabs -->
+    <div class="dashboard-menu" role="tablist" aria-label="Dashboard Sections">
+        <button class="menu-btn active" data-target="all">
+            <span class="menu-icon">🎛️</span>
+            <span>All Dashboard</span>
+        </button>
+        <button class="menu-btn" data-target="sensi-sec">
+            <span class="menu-icon">🎯</span>
+            <span>Sensi Engine</span>
+        </button>
+        <button class="menu-btn" data-target="tools-sec">
+            <span class="menu-icon">📸</span>
+            <span>HUD &amp; Termux</span>
+        </button>
+        <button class="menu-btn" data-target="nick-sec">
+            <span class="menu-icon">🔥</span>
+            <span>Nicknames</span>
+        </button>
+        <button class="menu-btn" data-target="vault-sec">
+            <span class="menu-icon">⚖️</span>
+            <span>Sensi Vault</span>
+        </button>
     </div>
 
     <!-- Squad Member Profile Switcher -->
-    <div class="card">
-        <h3>👥 Squad Member Profile Switcher (V8.0)</h3>
-        <p>Squad members ki profile aur banner switch karein.</p>
-        <div class="info-box">
-            <div><span>Legend Never Dies</span><strong>V8.0</strong></div>
+    <section class="card card-3d dash-section" data-section="sensi-sec">
+        <div class="card-header-row">
+            <h3><span class="icon-3d">👥</span> Squad Member Profile Switcher (V8.2)</h3>
+            <span class="chip-3d">SQUAD</span>
         </div>
-    </div>
+        <p>Squad members ki profile aur banner switch karein.</p>
+        <div class="squad-switcher" id="squadSwitcher">
+            <button class="squad-pill active" data-name="ZX ★ TUFAN ✔" data-rank="BR Heroic | UID: 2910340190 | 👍 6577 Likes" data-quote="&quot;Main Agar Apni Jawani Ke Suna Du Kisse, Ye Jo Launde Hain, Mere Paon Dabane Lag Jaayein !!!&quot;" data-gen="107" data-rd="101" data-s2="89" data-s4="86" data-snp="70" data-cam="85">
+                🔥 ZX ★ TUFAN
+            </button>
+            <button class="squad-pill" data-name="ZX ★ LEGEND 么" data-rank="CS Master | UID: 2910340882 | 👍 5420 Likes" data-quote="&quot;One Tap Ki Speed Aur Accuracy Hi Hamari Pehchan Hai!&quot;" data-gen="164" data-rd="155" data-s2="138" data-s4="124" data-snp="105" data-cam="88">
+                ⚡ LEGEND NEVER DIES
+            </button>
+            <button class="squad-pill" data-name="ZX ★ RUSHER 亗" data-rank="BR Grandmaster | UID: 2910341904 | 👍 7190 Likes" data-quote="&quot;Close Range Ho Ya Long Range, Crosshair Sirf Head Par Lock Hota Hai!&quot;" data-gen="158" data-rd="149" data-s2="133" data-s4="119" data-snp="102" data-cam="84">
+                💎 TUFAN RUSHER
+            </button>
+        </div>
+    </section>
 
     <!-- Profile Card -->
-    <div class="card">
+    <section class="card card-3d profile-card-3d dash-section" data-section="sensi-sec">
         <div class="profile-header">
             <div class="profile-avatar">🔥</div>
             <div class="profile-info">
-                <h4>ZX ★ TUFAN ✔</h4>
-                <p>BR Heroic | UID: 2910340190 | 👍 6577 Likes</p>
+                <h4 class="neon-name" id="profName">ZX ★ TUFAN ✔</h4>
+                <p id="profRank">BR Heroic | UID: 2910340190 | 👍 6577 Likes</p>
             </div>
+            <span class="verified-3d">VERIFIED PRO</span>
         </div>
-        <p style="font-style:italic;color:#ccc;">"Main Agar Apni Jawani Ke Suna Du Kisse, Ye Jo Launde Hain, Mere Paon Dabane Lag Jaayein !!!"</p>
-    </div>
+        <div class="quote-box-3d" id="profQuote">
+            "Main Agar Apni Jawani Ke Suna Du Kisse, Ye Jo Launde Hain, Mere Paon Dabane Lag Jaayein !!!"
+        </div>
+    </section>
 
     <!-- Official Sensi Setup -->
-    <div class="card">
-        <h3>🎯 ZX TUFAN OFFICIAL PRO SENSI SETUP</h3>
+    <section class="card card-3d dash-section" data-section="sensi-sec">
+        <div class="card-header-row">
+            <h3><span class="icon-3d">🎯</span> ZX TUFAN OFFICIAL PRO SENSI SETUP</h3>
+            <span class="chip-3d">PRESET</span>
+        </div>
         <p>Aapki original in-match sensitivity configuration.</p>
-        <div class="info-box">
-            <div><span>General</span><strong>107</strong></div>
-            <div><span>Red Dot</span><strong>101</strong></div>
-            <div><span>2x Scope</span><strong>89</strong></div>
-            <div><span>4x Scope</span><strong>86</strong></div>
-            <div><span>Sniper Scope</span><strong>70</strong></div>
-            <div><span>Free Camera</span><strong>85</strong></div>
+        <div class="sensi-meters">
+            <div class="meter-item">
+                <div class="meter-top"><span>General</span><strong id="valGen">107</strong></div>
+                <div class="meter-bar"><div class="meter-fill" id="barGen" style="width:53.5%"></div></div>
+            </div>
+            <div class="meter-item">
+                <div class="meter-top"><span>Red Dot</span><strong id="valRd">101</strong></div>
+                <div class="meter-bar"><div class="meter-fill" id="barRd" style="width:50.5%"></div></div>
+            </div>
+            <div class="meter-item">
+                <div class="meter-top"><span>2x Scope</span><strong id="val2x">89</strong></div>
+                <div class="meter-bar"><div class="meter-fill" id="bar2x" style="width:44.5%"></div></div>
+            </div>
+            <div class="meter-item">
+                <div class="meter-top"><span>4x Scope</span><strong id="val4x">86</strong></div>
+                <div class="meter-bar"><div class="meter-fill" id="bar4x" style="width:43%"></div></div>
+            </div>
+            <div class="meter-item">
+                <div class="meter-top"><span>Sniper Scope</span><strong id="valSnp">70</strong></div>
+                <div class="meter-bar"><div class="meter-fill" id="barSnp" style="width:35%"></div></div>
+            </div>
+            <div class="meter-item">
+                <div class="meter-top"><span>Free Camera</span><strong id="valCam">85</strong></div>
+                <div class="meter-bar"><div class="meter-fill" id="barCam" style="width:42.5%"></div></div>
+            </div>
         </div>
         <p class="note">* Values are personal presets; use Dynamic Sensi tab to auto-generate device-specific numbers.</p>
-    </div>
+    </section>
 
     <!-- Dynamic Sensi Generator -->
-    <div class="card">
-        <h3>🔍 V8.0 DYNAMIC DEVICE SENSI GENERATOR</h3>
-        <p>Apna phone model select karein ya custom RAM/DPI choose karein. Har device ke hisaab se real-time sensitivity generate hogi (0-200 scale).</p>
-        <button class="btn btn-full" id="openSensiBtn">🔫 Sensi Maker (Tap to Open)</button>
-    </div>
-
-    <!-- DeepSeek Sensi -->
-    <div class="card" style="border-color:#667eea;">
-        <h3>🤖 DEEPSEEK SENSI (NEW)</h3>
-        <p>Device info auto-detect karein aur AI-style sensitivity paayein.</p>
-        <button class="btn btn-full" id="openDeepseekBtn" style="background:linear-gradient(135deg,#667eea,#764ba2);">🤖 DeepSeek Sensi</button>
-    </div>
+    <section class="card card-3d highlight-card dash-section" data-section="sensi-sec">
+        <div class="card-header-row">
+            <h3><span class="icon-3d">🔍</span> DYNAMIC DEVICE SENSI GENERATOR</h3>
+            <span class="chip-3d glow-chip">AI TUNED</span>
+        </div>
+        <p>Apna phone model, RAM aur FPS select karein. Har device ke hisaab se perfect headshot sensitivity generate hogi (0-200 scale).</p>
+        <button class="btn-3d btn-full" id="openSensiBtn">
+            <span class="btn-shine"></span>
+            🔫 Sensi Maker (Tap to Open)
+        </button>
+    </section>
 
     <!-- HUD Geometry Calculator -->
-    <div class="card">
-        <h3>📸 Dynamic HUD Geometry & Drag Calculator</h3>
-        <p>Apna HUD screenshot upload karein — image ke actual aspect ratio aur resolution ke hisab se dynamic fire button size aur drag sensitivity calculate hogi.</p>
-        <div class="info-box">
-            <div><span>HUD screenshot ready</span><strong>✅</strong></div>
+    <section class="card card-3d dash-section" data-section="tools-sec">
+        <div class="card-header-row">
+            <h3><span class="icon-3d">📸</span> Dynamic HUD Geometry &amp; Drag Calculator</h3>
+            <span class="chip-3d">HUD V8.2</span>
         </div>
-    </div>
+        <p>Apna HUD screenshot upload karein — image ke actual aspect ratio aur resolution ke hisab se dynamic fire button size aur drag sensitivity calculate hogi.</p>
+        <label class="file-drop-3d" for="hudUpload">
+            <span>📤 Upload HUD Screenshot (PNG / JPG)</span>
+            <small id="hudFileName">No screenshot selected — default 20:9 geometry active</small>
+            <input type="file" id="hudUpload" accept="image/*" hidden>
+        </label>
+        <div class="info-box" id="hudResultBox">
+            <div><span>HUD Geometry Engine</span><strong id="hudStatus">Ready ✅</strong></div>
+            <div><span>Recommended Fire Button Size</span><strong id="hudFireSize">46%</strong></div>
+            <div><span>Optimal Drag Speed Multiplier</span><strong id="hudDragMult">1.12x</strong></div>
+        </div>
+    </section>
 
     <!-- Nickname Generator -->
-    <div class="card">
-        <h3>🔥 Esports Nickname Generator (V8.0)</h3>
-        <p>Stylish nickname generate aur copy karein.</p>
-        <p style="font-size:12px;color:#888;">Showing 30 combinations</p>
+    <section class="card card-3d dash-section" data-section="nick-sec">
+        <div class="card-header-row">
+            <h3><span class="icon-3d">🔥</span> Esports Nickname Generator (V8.2)</h3>
+            <span class="chip-3d">30 STYLES</span>
+        </div>
+        <p>Stylish nickname generate aur one-tap copy karein.</p>
         <div class="nick-grid" id="nickGrid"></div>
-    </div>
+    </section>
 
     <!-- Termux Scanner -->
-    <div class="card">
-        <h3>📱 TERMUX REAL HARDWARE SCANNER</h3>
-        <p>Download main.py, run it in Termux, and upload device_report.json to generate exact hardware-based sensitivity.</p>
+    <section class="card card-3d dash-section" data-section="tools-sec">
+        <div class="card-header-row">
+            <h3><span class="icon-3d">📱</span> TERMUX REAL HARDWARE SCANNER</h3>
+            <span class="chip-3d">TERMUX</span>
+        </div>
+        <p>Run commands in Termux, aur <code>device_report.json</code> upload karke exact hardware-based sensitivity generate karein.</p>
         <div class="info-box">
             <div><span>🔒 Reads basic Android hardware properties only</span><strong>✅</strong></div>
         </div>
-        <p style="font-size:12px;color:#aaa;margin-top:8px;">termux-setup-storage<br>pkg update -y && pkg install python -y<br>cd ~/storage/downloads<br>python main.py</p>
-        <p class="note">Waiting for your Termux report.</p>
-    </div>
+        <pre class="code-box-3d">termux-setup-storage
+pkg update -y && pkg install python -y
+cd ~/storage/downloads
+python main.py</pre>
+        <label class="file-drop-3d" for="termuxUpload" style="margin-top:10px;">
+            <span>📂 Upload device_report.json</span>
+            <small id="termuxFileName">Waiting for your Termux report...</small>
+            <input type="file" id="termuxUpload" accept=".json,application/json" hidden>
+        </label>
+        <div class="result-box" id="termuxResultBox"></div>
+    </section>
 
     <!-- Sensi Vault -->
-    <div class="card">
-        <h3>⚖️ SAVED SENSI VAULT & DPI CALCULATOR</h3>
-        <p>Apne save kiye hue sensitivity profiles dekhein aur safe DPI ratio calculate karein.</p>
+    <section class="card card-3d dash-section" data-section="vault-sec">
+        <div class="card-header-row">
+            <h3><span class="icon-3d">⚖️</span> SAVED SENSI VAULT &amp; DPI CALCULATOR</h3>
+            <button class="btn-mini-danger" id="clearVaultBtn" title="Clear Saved Vault">🗑️ Clear</button>
+        </div>
+        <p>Apne save kiye hue sensitivity profiles dekhein aur manage karein.</p>
         <div id="vaultContent">
             <div class="vault-empty">Abhi tak koi profile save nahi ki gayi hai. Dynamic Sensi tab se profile generate karke save karein!</div>
         </div>
-    </div>
+    </section>
 
 </div>
 
 <!-- ===== SENSI MAKER MODAL ===== -->
 <div class="modal-overlay" id="sensiModal">
-    <div class="modal-content">
+    <div class="modal-content modal-3d">
         <span class="close-btn" id="closeModal">&times;</span>
-        <h3 style="text-align:center;color:#00d4ff;margin-bottom:15px;">📱 Select Device Specs</h3>
+        <div class="modal-badge">V8.2 3D ENGINE</div>
+        <h3 class="modal-title-3d">📱 Select Device Specs</h3>
 
         <label>Phone Model:</label>
         <select id="phoneModel">
@@ -176,29 +289,28 @@
             </optgroup>
         </select>
 
-        <label>Agar model list mein nahi hai to manually select karein:</label>
-        <select id="manualRam">
-            <option value="">-- RAM --</option>
+        <label>RAM (Memory):</label>
+        <select id="ramSelect">
             <option value="2">2 GB</option>
             <option value="3">3 GB</option>
-            <option value="4">4 GB</option>
+            <option value="4" selected>4 GB</option>
             <option value="6">6 GB</option>
             <option value="8">8 GB</option>
             <option value="12">12 GB</option>
         </select>
 
-        <select id="manualDpi" style="margin-top:6px;">
-            <option value="">-- DPI --</option>
-            <option value="320">320</option>
-            <option value="360">360</option>
-            <option value="395">395</option>
-            <option value="400">400</option>
-            <option value="411">411</option>
-            <option value="450">450</option>
-            <option value="500">500</option>
+        <label>FPS (Frames Per Second):</label>
+        <select id="fpsSelect">
+            <option value="30">30 FPS (Low End)</option>
+            <option value="60" selected>60 FPS (Normal)</option>
+            <option value="90">90 FPS (High End)</option>
+            <option value="120">120 FPS (Ultra)</option>
         </select>
 
-        <button class="btn btn-full" id="generateSensi" style="margin-top:12px;">⚡ Generate Sensitivity</button>
+        <button class="btn-3d btn-full" id="generateSensi" style="margin-top:16px;">
+            <span class="btn-shine"></span>
+            ⚡ Generate Sensitivity
+        </button>
 
         <div class="result-box" id="sensiResult">
             <p>🎯 Recommended Sensi (0-200 Scale):</p>
@@ -208,51 +320,8 @@
     </div>
 </div>
 
-<!-- ===== DEEPSEEK SENSI MODAL ===== -->
-<div class="modal-overlay" id="deepseekModal">
-    <div class="modal-content" style="border:1px solid #667eea;">
-        <span class="close-btn" id="closeDeepseek">&times;</span>
-        <h3 style="text-align:center;color:#667eea;margin-bottom:15px;">🤖 DeepSeek Sensi</h3>
-        <p style="font-size:12px;color:#aaa;text-align:center;margin-bottom:15px;">Aapke device ki info detect ho rahi hai...</p>
-
-        <div class="info-box" id="deviceInfoBox">
-            <div>📱 <strong>Model:</strong> <span id="devModel">Detecting...</span></div>
-            <div>🤖 <strong>Android:</strong> <span id="devAndroid">Detecting...</span></div>
-            <div>💾 <strong>RAM:</strong> <span id="devRam">Detecting...</span></div>
-            <div>📐 <strong>DPI:</strong> <span id="devDpi">Detecting...</span></div>
-            <div>🎮 <strong>FPS:</strong> <span id="devFps">Detecting...</span></div>
-        </div>
-
-        <label>Agar info galat hai to manually select karein:</label>
-        <select id="dsManualRam">
-            <option value="">-- RAM --</option>
-            <option value="2">2GB</option>
-            <option value="3">3GB</option>
-            <option value="4">4GB</option>
-            <option value="6">6GB</option>
-            <option value="8">8GB</option>
-            <option value="12">12GB</option>
-        </select>
-        <select id="dsManualDpi" style="margin-top:6px;">
-            <option value="">-- DPI --</option>
-            <option value="320">320</option>
-            <option value="360">360</option>
-            <option value="395">395</option>
-            <option value="400">400</option>
-            <option value="411">411</option>
-            <option value="450">450</option>
-            <option value="500">500</option>
-        </select>
-
-        <button class="btn btn-full" id="generateDeepseek" style="margin-top:12px;background:linear-gradient(135deg,#667eea,#764ba2);">⚡ Generate My Sensi</button>
-
-        <div class="result-box" id="deepseekResult">
-            <p>🎯 Aapke Device Ke Liye Recommended (0-200 Scale):</p>
-            <div class="result-values" id="deepseekValues"></div>
-            <p class="note">* Training ground mein 10 min test karein. Chest par ruke to +3, head ke upar jaye to -3.</p>
-        </div>
-    </div>
-</div>
+<!-- Toast Notification -->
+<div class="toast-3d" id="toastMsg">Copied!</div>
 
 <script src="script.js"></script>
 </body>

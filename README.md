@@ -1,50 +1,27 @@
-# ZX TUFAN PRO SENSI V8.0
+# ZX TUFAN PRO SENSI V8.2 (3D Premium Dashboard Edition)
 
-Free Fire sensitivity generator website for ZX TUFAN SQUAD.
+Free Fire sensitivity generator & tactical esports dashboard for ZX TUFAN SQUAD.
 
-## Features
+## What's New in V8.2
 
-- **Sensi Maker**: Phone model select karein, tested sensitivity values paayein (0-200 scale)
-- **40+ Phone Models**: Redmi, Samsung, Realme, Vivo, iPhone, Infinix, Tecno, Motorola
-- **Vivo Y04**: Entry-level phone ke liye alag sensitivity
-- **RAM/DPI Fallback**: Agar model list mein nahi hai, to manually RAM/DPI select karein
-- **Sensi Vault**: Generate kiye gaye profiles localStorage mein save hote hain
-- **Nickname Generator**: 30 stylish Free Fire nicknames with copy button
-- **HUD Geometry Calculator**: Screenshot upload karke fire button size calculate karein
-- **Termux Hardware Scanner**: Real hardware info ke liye Python script
-- **NEW: DeepSeek Sensi**: Device auto-detect karke sensi generate karein
+- **Premium 3D Dashboard UI**: Extruded 3D title typography with layered light shadows, ambient neon glow orbs, and beveled glass cards
+- **Interactive 3D Dashboard Menu**: Instant category filtering (`All Dashboard`, `Sensi Engine`, `HUD & Termux`, `Nicknames`, `Sensi Vault`)
+- **Tactile 3D Buttons**: Physical press-depth bevels (`box-shadow` elevation) with animated light-sweep reflection
+- **Live Squad Profile Switcher**: Switch between squad presets with animated 0–200 sensitivity progress bars
+- **Working HUD & Termux Tools**: Upload a HUD screenshot to calculate fire-button size & drag speed, or import `device_report.json` from Termux
+- **Sensi Vault + Clear Action**: Automatically saves generated profiles in `localStorage` with one-click vault reset
 
 ## Files
 
 | File | Description |
 |------|-------------|
-| `index.html` | Main HTML structure (original + DeepSeek button) |
-| `style.css` | Dark gaming theme styling |
-| `script.js` | Phone database + sensi logic + vault + nickname + DeepSeek logic |
-| `README.md` | This file |
+| `index.html` | 3D Dashboard layout, navigation menu, interactive tools & Sensi Maker modal |
+| `style.css` | Premium 3D lighting, extruded text shadows, tactile push buttons & responsive grid |
+| `script.js` | 40+ device database, RAM/FPS engine, dashboard tabs, HUD/Termux parsers & vault |
+| `README.md` | Documentation |
 
 ## How to Use
 
-1. Saari 4 files ek folder mein rakhein
-2. `index.html` browser mein open karein
-3. **Sensi Maker** ya **DeepSeek Sensi** button dabayein
-4. Phone model select karein (ya auto-detect hone dein)
-5. **Generate** dabayein
-
-## Sensitivity Scale
-
-- **0-200**: Free Fire Max in-game sensitivity range
-- Values tested hain, lekin har user ko **Training Ground** mein 10 min test karna chahiye
-- Chest par ruke → General/Red Dot **+3** karein
-- Head ke upar jaye → General/Red Dot **-3** karein
-
-## Tech Stack
-
-- Pure HTML5 + CSS3 + Vanilla JavaScript
-- No backend required
-- localStorage for Sensi Vault
-- Responsive design
-
-## Disclaimer
-
-Ye sensitivity values community-tested hain, lekin **har device aur playstyle ke liye perfect nahi hoti**. Training ground mein test karna zaroori hai.
+1. Extract all 4 files into a single folder
+2. Open `index.html` in any modern mobile or desktop browser
+3. Use the **3D Dashboard Menu** to jump between sections or tap **Sensi Maker** to generate custom sensitivity

@@ -42,13 +42,72 @@ const phoneDatabase = {
 
 const clamp = (v) => Math.min(200, Math.max(0, Math.round(v)));
 
-function computeDynamicSensi(ram, dpi, fps = 60) {
-    let general = 160, redDot = 152, scope2x = 136, scope4x = 122, sniper = 107, freeCam = 85;
-    if (ram <= 3) { general += 8; redDot += 8; }
-    else if (ram >= 8) { general -= 5; redDot -= 5; }
-    if (dpi >= 450) { general -= 5; redDot -= 5; scope2x -= 5; }
-    else if (dpi <= 320) { general += 5; redDot += 5; }
-    if (fps >= 90) { general -= 3; redDot -= 3; }
+// ===== TOAST HELPER =====
+let toastTimer;
+function showToast(msg) {
+    const toast = document.getElementById('toastMsg');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+// ===== 3D DASHBOARD MENU TABS =====
+document.querySelectorAll('.menu-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.dataset.target;
+        document.querySelectorAll('.dash-section').forEach(sec => {
+            sec.style.display = (target === 'all' || sec.dataset.section === target) ? 'block' : 'none';
+        });
+    });
+});
+
+// ===== SQUAD PROFILE SWITCHER =====
+document.querySelectorAll('.squad-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+        document.querySelectorAll('.squad-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        document.getElementById('profName').textContent = pill.dataset.name;
+        document.getElementById('profRank').textContent = pill.dataset.rank;
+        document.getElementById('profQuote').textContent = pill.dataset.quote;
+
+        const stats = [
+            ['Gen', pill.dataset.gen],
+            ['Rd', pill.dataset.rd],
+            ['2x', pill.dataset.s2],
+            ['4x', pill.dataset.s4],
+            ['Snp', pill.dataset.snp],
+            ['Cam', pill.dataset.cam]
+        ];
+        stats.forEach(([key, val]) => {
+            const num = Number(val);
+            document.getElementById('val' + key).textContent = num;
+            document.getElementById('bar' + key).style.width = `${Math.min(100, (num / 200) * 100)}%`;
+        });
+        showToast('Switched to ' + pill.dataset.name);
+    });
+});
+
+// ===== DYNAMIC SENSI ENGINE =====
+function computeDynamicSensi(baseModel, ram, fps) {
+    let base = phoneDatabase[baseModel] || { general: 160, redDot: 152, scope2x: 136, scope4x: 122, sniper: 107, freeCam: 85 };
+
+    let general = base.general;
+    let redDot = base.redDot;
+    let scope2x = base.scope2x;
+    let scope4x = base.scope4x;
+    let sniper = base.sniper;
+    let freeCam = base.freeCam;
+
+    if (ram <= 3) { general += 6; redDot += 6; scope2x += 4; }
+    else if (ram >= 8) { general -= 4; redDot -= 4; scope2x -= 3; }
+
+    if (fps >= 90) { general -= 3; redDot -= 3; scope2x -= 2; }
+    else if (fps <= 30) { general += 4; redDot += 4; scope2x += 3; }
 
     return {
         general: clamp(general),
@@ -71,7 +130,7 @@ function renderSensiMarkup(res) {
     `;
 }
 
-// ===== SAVE TO LOCALSTORAGE =====
+// ===== SAVE & RENDER VAULT =====
 function saveProfile(model, result) {
     const vault = JSON.parse(localStorage.getItem('sensiVault') || '[]');
     vault.unshift({ model, ...result, date: new Date().toLocaleString() });
@@ -79,7 +138,6 @@ function saveProfile(model, result) {
     renderVault();
 }
 
-// ===== RENDER VAULT =====
 function renderVault() {
     const vault = JSON.parse(localStorage.getItem('sensiVault') || '[]');
     const el = document.getElementById('vaultContent');
@@ -92,10 +150,68 @@ function renderVault() {
 
     el.innerHTML = vault.map(v => `
         <div class="info-box" style="margin-bottom:8px;">
-            <div style="margin-bottom:6px;"><strong>${v.model}</strong> <span style="color:#666;font-size:11px;">${v.date}</span></div>
+            <div style="margin-bottom:4px;"><strong>${v.model}</strong> <span style="color:#64748b;font-size:11px;">${v.date}</span></div>
             <div style="font-size:12px;">Gen: ${v.general} | RD: ${v.redDot} | 2x: ${v.scope2x} | 4x: ${v.scope4x} | Sniper: ${v.sniper}</div>
         </div>
     `).join('');
+}
+
+const clearVaultBtn = document.getElementById('clearVaultBtn');
+if (clearVaultBtn) {
+    clearVaultBtn.addEventListener('click', () => {
+        localStorage.removeItem('sensiVault');
+        renderVault();
+        showToast('Sensi Vault cleared');
+    });
+}
+
+// ===== HUD SCREENSHOT GEOMETRY CALCULATOR =====
+const hudUpload = document.getElementById('hudUpload');
+if (hudUpload) {
+    hudUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        document.getElementById('hudFileName').textContent = file.name;
+        const img = new Image();
+        img.onload = () => {
+            const ratio = Math.max(img.width, img.height) / Math.min(img.width, img.height);
+            const fireSize = Math.round(Math.min(58, Math.max(38, 42 + (ratio - 1.77) * 10)));
+            const dragMult = (1.05 + (ratio - 1.77) * 0.18).toFixed(2);
+            document.getElementById('hudStatus').textContent = `${img.width}×${img.height} (${ratio.toFixed(2)}:1) ✅`;
+            document.getElementById('hudFireSize').textContent = `${fireSize}%`;
+            document.getElementById('hudDragMult').textContent = `${dragMult}x`;
+            showToast('HUD Geometry Calculated!');
+        };
+        img.src = URL.createObjectURL(file);
+    });
+}
+
+// ===== TERMUX JSON SCANNER =====
+const termuxUpload = document.getElementById('termuxUpload');
+if (termuxUpload) {
+    termuxUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        document.getElementById('termuxFileName').textContent = file.name;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            try {
+                const data = JSON.parse(ev.target.result);
+                const ram = parseInt(data.ram_gb || data.ram || 4, 10);
+                const fps = parseInt(data.refresh_rate || data.fps || 60, 10);
+                const modelName = data.model || data.device || 'Termux Hardware';
+                const res = computeDynamicSensi(modelName, ram, fps);
+                const box = document.getElementById('termuxResultBox');
+                box.innerHTML = `<p>📱 Hardware Sensi (${modelName}):</p><div class="result-values">${renderSensiMarkup(res)}</div>`;
+                box.style.display = 'block';
+                saveProfile(`Termux: ${modelName}`, res);
+                showToast('Termux Report Imported!');
+            } catch {
+                showToast('Invalid JSON file');
+            }
+        };
+        reader.readAsText(file);
+    });
 }
 
 // ===== NICKNAME GENERATOR =====
@@ -137,7 +253,7 @@ function renderNicknames() {
 function copyNick(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text)
-            .then(() => alert('Copied: ' + text))
+            .then(() => showToast('Copied: ' + text))
             .catch(() => fallbackCopy(text));
     } else {
         fallbackCopy(text);
@@ -151,10 +267,10 @@ function fallbackCopy(text) {
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-    alert('Copied: ' + text);
+    showToast('Copied: ' + text);
 }
 
-// ===== SENSI MAKER MODAL =====
+// ===== SENSI MAKER MODAL LOGIC =====
 const modal = document.getElementById('sensiModal');
 const openBtn = document.getElementById('openSensiBtn');
 const closeBtn = document.getElementById('closeModal');
@@ -165,104 +281,29 @@ closeBtn.onclick = () => { modal.style.display = 'none'; };
 
 generateBtn.onclick = () => {
     const model = document.getElementById('phoneModel').value;
-    const manualRam = document.getElementById('manualRam').value;
-    const manualDpi = document.getElementById('manualDpi').value;
+    const ram = parseInt(document.getElementById('ramSelect').value, 10);
+    const fps = parseInt(document.getElementById('fpsSelect').value, 10);
 
     let result;
     let label;
 
     if (model && phoneDatabase[model]) {
-        result = phoneDatabase[model];
-        label = model;
+        result = computeDynamicSensi(model, ram, fps);
+        label = `${model} (${ram}GB RAM / ${fps} FPS)`;
     } else {
-        const ram = manualRam ? parseInt(manualRam, 10) : 4;
-        const dpi = manualDpi ? parseInt(manualDpi, 10) : 400;
-        result = computeDynamicSensi(ram, dpi, 60);
-        label = `Custom (${ram}GB RAM / ${dpi} DPI)`;
+        result = computeDynamicSensi(null, ram, fps);
+        label = `Custom Device (${ram}GB RAM / ${fps} FPS)`;
     }
 
     document.getElementById('resultValues').innerHTML = renderSensiMarkup(result);
     document.getElementById('sensiResult').style.display = 'block';
     saveProfile(label, result);
+    showToast('Sensitivity Generated & Saved!');
 };
-
-// ===== DEEPSEEK SENSI =====
-function pickClosestOptionValue(selectEl, targetValue) {
-    if (!selectEl) return '';
-    const options = Array.from(selectEl.options)
-        .map(o => parseInt(o.value, 10))
-        .filter(v => !Number.isNaN(v));
-    if (options.length === 0) return '';
-    return String(options.reduce((prev, curr) =>
-        Math.abs(curr - targetValue) < Math.abs(prev - targetValue) ? curr : prev
-    ));
-}
-
-function detectDevice() {
-    const ua = navigator.userAgent;
-    let model = "Unknown Device";
-    if (ua.includes("Redmi Note 9")) model = "Redmi Note 9";
-    else if (ua.includes("Redmi")) model = "Redmi";
-    else if (ua.includes("Samsung")) model = "Samsung";
-    else if (ua.includes("iPhone")) model = "iPhone";
-    else if (ua.includes("Vivo")) model = "Vivo";
-    else if (ua.includes("Oppo")) model = "Oppo";
-    else if (ua.includes("Realme")) model = "Realme";
-
-    let androidVer = "Unknown";
-    const match = ua.match(/Android\s([0-9.]+)/);
-    if (match) androidVer = match[1];
-
-    const ram = navigator.deviceMemory || "Unknown";
-    const dpr = window.devicePixelRatio || 1;
-    const dpi = Math.round(160 * dpr);
-    const fps = window.screen.width > 1000 ? 90 : 60;
-
-    return { model, androidVer, ram, dpi, fps };
-}
-
-const deepseekModal = document.getElementById('deepseekModal');
-const openDeepseekBtn = document.getElementById('openDeepseekBtn');
-const closeDeepseek = document.getElementById('closeDeepseek');
-
-openDeepseekBtn.onclick = () => {
-    deepseekModal.style.display = 'flex';
-    const dev = detectDevice();
-    document.getElementById('devModel').textContent = dev.model;
-    document.getElementById('devAndroid').textContent = dev.androidVer;
-    document.getElementById('devRam').textContent = dev.ram === "Unknown" ? "Unknown" : dev.ram + " GB";
-    document.getElementById('devDpi').textContent = dev.dpi;
-    document.getElementById('devFps').textContent = dev.fps + " FPS";
-
-    const ramSelect = document.getElementById('dsManualRam');
-    const dpiSelect = document.getElementById('dsManualDpi');
-    if (dev.ram !== "Unknown") {
-        ramSelect.value = pickClosestOptionValue(ramSelect, Number(dev.ram));
-    }
-    dpiSelect.value = pickClosestOptionValue(dpiSelect, dev.dpi);
-};
-
-closeDeepseek.onclick = () => { deepseekModal.style.display = 'none'; };
 
 window.addEventListener('click', (e) => {
     if (e.target === modal) modal.style.display = 'none';
-    if (e.target === deepseekModal) deepseekModal.style.display = 'none';
 });
-
-document.getElementById('generateDeepseek').onclick = () => {
-    const dev = detectDevice();
-    const manualRam = document.getElementById('dsManualRam').value;
-    const manualDpi = document.getElementById('dsManualDpi').value;
-
-    const ram = manualRam ? parseInt(manualRam, 10) : (dev.ram !== "Unknown" ? Number(dev.ram) : 4);
-    const dpi = manualDpi ? parseInt(manualDpi, 10) : dev.dpi;
-
-    const result = computeDynamicSensi(ram, dpi, dev.fps);
-
-    document.getElementById('deepseekValues').innerHTML = renderSensiMarkup(result);
-    document.getElementById('deepseekResult').style.display = 'block';
-    saveProfile(`DeepSeek (${ram}GB / ${dpi} DPI)`, result);
-};
 
 // ===== INIT =====
 renderNicknames();
